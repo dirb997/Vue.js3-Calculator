@@ -1,13 +1,13 @@
 <template>
   <div class="calculator">
     <div class="display">
-      <div v-if="state">
+      <div v-if="state" class="calcScreen">
         {{  current || 0 }}
       </div>
       <div v-else>
         <ul>
-          <li v-for="hist in history">
-            {{  hist  }}
+          <li v-for="histories in history">
+            {{  histories  }}
           </li>
         </ul>
       </div>
@@ -31,7 +31,7 @@
     <div @click="append('0')" class="btn zero">0</div>
     <div @click="dot()" class="btn">.</div>
     <div @click="equal()" class="btn operator">=</div>
-    <div @click="histories()" class="btn">history</div>
+    <div @click="histories()" class="btn">History</div>
   </div>
 </template>
 
@@ -86,12 +86,17 @@ export default {
 
 <style scoped>
 
+.calcScreen {
+  text-align: center;
+}
+
 .calculator {
   cursor: pointer;
   margin: 0 auto;
   width: 400px;
   font-size: 40px;
   display: grid;
+  border-radius: 10px;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
 }
